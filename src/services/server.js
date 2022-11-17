@@ -4,12 +4,14 @@ const path = require('path');
 const mainRouter = require('../routes/index');
 const { ProductosController } = require('../controllers/ContenedorProductos');
 const viewsFolderPath = path.resolve(__dirname, '../../views');
+const http = require('http');
+const io = require('socket.io');
 
-app.use(express.static('public'));
+app.use(express.static('views'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.set('views', viewsFolderPath);
+app.set('public', viewsFolderPath);
 app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
@@ -26,4 +28,12 @@ app.use((err, req, res, next) => {
     res.status(status).json({ message });
 });
 
-module.exports = app;
+const myHTTPServer = http.Server(app);
+const myWebSocketServer = io(myHTTPServer);
+myWebSocketServer.on('connection',(socket)=>{
+    console.log('se acaba de conectar un cliente');
+    console.log('ID SOCKET: ' + socket.id);
+    console.log('ID CLIENT SOCKET: ' + socket.client.id);
+})
+
+module.exports = myHTTPServer;
