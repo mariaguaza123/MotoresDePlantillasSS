@@ -1,0 +1,28 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Agrega nuevo producto
+  script(src ='/socket.io/socket.io.js')
+  script(src ='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+  script(type="module" src ='cliente.js')
+  h2(style='margin-left:550px' ) Nuevo Producto 
+form(action='/api/productos' method='post' style='border-radius: 5px;padding: 20px;' id='formProducts')
+  fieldset
+    br
+    br
+    label(for='title') Nombre producto
+      input#nameProduct(type='text' name='nameProduct' placeholder='Ej: Camisa' style ='width: 95%;padding: 12px 20px;margin: 8px 0')
+    br
+    br
+    label(for='price') Precio
+      input#price(type='number' name='price' placeholder='20 USD' style ='width: 95%;padding: 12px 20px;margin: 8px 0')
+    br
+    br
+    button(type='submit' style='padding: 12px 20px; background-color: #45a049') Guardar producto
+    button(type='submit')
+     a(href="./api/productos" style='background-color: ##CCDDCC')  Ver productos
+     
+
+  

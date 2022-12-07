@@ -1,0 +1,18 @@
+div(style='width:100%;border: 1px') 
+  h1(style='margin-left:550px' ) Lista de productos
+  if listaProductos.length
+    fieldset
+      table(style='font-family: Arial, Helvetica, sans-serif;border-collapse: collapse;width: 100%')
+        tr  
+          th(style='padding-top: 12px;padding-bottom: 12px;text-align: left;background-color: #04AA6D;color: white') Nombre
+          th(style='padding-top: 12px;padding-bottom: 12px;text-align: left;background-color: #04AA6D;color: white') Precio
+        tr 
+         each val  in listaProductos
+          tr  
+            th(style='padding-top: 12px;padding-bottom: 12px;text-align: left;background-color: #E6E9E6; padding: 8px;')= val.nameProduct
+            th(style='padding-top: 12px;padding-bottom: 12px;text-align: left; padding: 8px;background-color: #E6E9E6;')= val.price
+  else
+    p No hay productos
+  button(style='margin-left:200px padding: 12px 20px; background-color: #45a049')
+    a(href="/") Guardar productos
+    
